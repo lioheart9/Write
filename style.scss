@@ -1,0 +1,283 @@
+$main-color: rgb(158, 158, 158);
+$title-color: rgb(17, 17, 17);
+$hover-color: rgb(80, 80, 80);
+
+@mixin link-colors($color) {
+  color: darken($color, 15%);
+  border: 1px solid $color;
+  transition: all .2s;
+  &:hover {
+    color: darken($color, 50%);
+    border-color: darken($color, 10%);
+  }
+}
+
+@mixin yellow-link($color) {
+  color: $color;
+  transition: all .2s;
+  &:hover {
+    color: rgb(214, 166, 62);
+    &::after {
+      border-color: rgb(214, 166, 62);
+    }
+  }
+}
+
+body {
+  font-family: 'Georgia','Yu Mincho Light','YuMincho','Yu Mincho','游明朝体','ヒラギノ明朝 ProN','Hiragino Mincho ProN','メイリオ', Meiryo,serif;
+  color: $hover-color;
+  margin: 60px auto;
+  padding: 0 2.5rem;
+}
+
+button, input, select, textarea {
+  font-family : inherit;
+  font-size : 100%;
+}
+
+.pt {
+  padding-top: 2.5rem;
+}
+
+.ptb {
+  padding: 2.5em 0;
+}
+
+.icon {
+  @include link-colors($main-color);
+  border: none;
+  font-size: 1.3rem;
+  padding-right: .5rem;
+}
+
+.icon-wrapper {
+  a+a {
+    padding-left: .5rem;
+  }
+}
+
+
+header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.header-title {
+  a {
+    font: {
+      size: 2.3rem;
+      weight: bold;
+    }
+    color: rgb(17, 17, 17);
+    transition: all .2s;
+    &:hover {
+      color: $hover-color;
+    }
+  }
+  p {
+    font: {
+      size: 1.15rem;
+    }
+    margin-top: .9rem;
+    color: $main-color;
+  }
+}
+
+.top-wrapper img {
+  height: auto;
+  width: 100%;
+}
+
+.navbar {
+  .main-menu {
+    display: flex;
+    position: relative;
+    .menu-list {
+      .menu-link::after {
+        content: '';
+        display: inline-block;
+        vertical-align: 30%;
+        width: 5px;
+        height: 5px;
+        margin: 0 0 0 15px;
+        border-right: 1px solid $title-color;
+        border-bottom: 1px solid $title-color;
+        transform: rotate(45deg);
+      }
+      .sub-menu {
+        position: absolute;
+        top: 50px;
+        width: 200px;
+        visibility: hidden;
+        opacity: 0;
+        z-index: 1;
+        transition: all .2s ease;
+        li {
+          border: 1px solid #ddd;
+          background-color: #fff;
+          a {
+            display: inline-block;
+            padding: 20px 15px;
+          }
+        }
+
+      }      
+      &:hover .sub-menu {
+        top:50px;
+        visibility: visible;
+        opacity: 1;
+      }
+    }
+    > li {
+      margin-right: 2rem;
+      a {
+        @include yellow-link($title-color);
+      }
+    }       
+    .search {
+      margin-left: auto;
+      margin-right: 0px;
+    }
+  }
+}
+
+.top-wrapper {
+  .top-text {
+    p {
+      font-size: 1.6rem;
+      color: $main-color;
+      letter-spacing: 1.3px;
+      line-height: 1.7;
+    }
+  }
+}
+
+.article-wrapper {
+  border-bottom: 1px solid #ddd;
+}
+
+.article-box {
+  .article-header {
+    time {
+      color: $main-color;
+    }
+    h1 {
+      padding: 1rem 0 2rem 0;
+      font: {
+        size: 1.3rem;
+        weight: bold;
+      }
+    }
+  }
+  .article-text {
+    p {
+      color: $main-color;
+      font-size: 1.1rem;
+      letter-spacing: 1px;
+      line-height: 1.7;
+    }
+  }
+}
+
+.button-wrapper {
+  .btn {
+    margin-left: 6px;
+    a {
+      display: inline-block;
+      padding: .9rem 1rem;
+      font-size: .8rem;
+      @include link-colors(#c0c0c0)
+    }
+  }
+}
+
+.bottom-container {
+  color: $main-color;
+  border-bottom: 1px solid #ddd;
+  .footer-title {
+    color: $title-color;
+    padding-bottom: 1rem;
+    font-weight: bold;
+  }
+  .profile {
+    .profile-header {
+      padding-bottom: 1.5rem;
+      display: flex;
+      .profile-image {
+        img {
+          border-radius: 50%;
+          width: 100px;
+          height: auto;
+        }
+      }
+      .profile-icons {
+        display: flex;
+        align-items: center;
+        .proficon-wrapper {
+          text-align: center;
+          margin-left: 1.3rem;
+          p {
+            padding-bottom: .8rem;
+            color: $title-color;
+            font: {
+              size: 1.3rem;
+              weight: bold;
+            }
+          }
+        }
+      }
+    }
+    .profile-text {
+      letter-spacing: .2px;
+      line-height: 1.5;
+
+    }
+  }
+  .footer-info {
+    h2 {
+      color: $title-color;
+      padding-bottom: .8rem;
+    }
+    p {
+      letter-spacing: .2px;
+      line-height: 1.5;
+    }
+  }
+  .footer-content, .footer-category {
+    line-height: 2.5; 
+    .farticle-box, .fcategory-box {
+      a {
+        @include yellow-link($hover-color);
+        border-bottom: 1px solid #ddd;
+      }
+    }
+    .search-box {
+      padding-top: 5rem;
+      input {
+        display: inline-block;
+        width: 300px;
+        padding: .5rem;
+      }
+    }
+  }
+}
+
+footer {
+  li {
+    display: inline-block;
+    color: $main-color;
+    padding-right: .3rem;
+  }
+  li+li {
+    padding-left: .3rem;
+    border-left: 1px solid $main-color;
+  }
+}
+
+@media (max-width: 480px) {
+  
+}
+
+  @media (max-width: 768px) {
+
+  }
